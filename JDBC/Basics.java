@@ -35,21 +35,36 @@ public class Basics {
         // Step5. Execute the Query.
         String insert = "INSERT INTO studentInfo(id, sname, sage, scity) VALUES (2, 'Vidula', 21, 'Patiala')";
         String update = "UPDATE studentInfo SET scity = 'Sangrur' WHERE id = 1";
+        String delete = "DELETE FROM studentInfo WHERE id = 2";
         String select = "SELECT * FROM studentInfo";
 
         // Non-Select Queries => statement.executeUpdate("SQL Query") -> Returns Int (No. of Rows Affected)
-        // System.out.println(statement.executeUpdate(update) + " rows affected!");
+        // System.out.println(statement.executeUpdate(delete) + " rows affected!");
 
         // Select Queries (Retrieval) => statement.executeQuery("SQL Query") -> Returns ResultSet (Data)
-        ResultSet result = statement.executeQuery(select);
-        while (result.next()) {
-            System.out.println(result.getString("sname") + " " + result.getString("sage"));
+        //      ResultSet result = statement.executeQuery(select);
+        //      while (result.next()) {
+        //      System.out.println(result.getString("sname") + " " + result.getString("sage"));
+        //  }
+
+        // OR
+
+        String query = "SELECT * FROM studentInfo";
+        // statement.execute(query) -> returns True if query returns ResultSet (Data/Select Query) and False if query returns updatedRow count (Non-Select Query)
+        boolean status = statement.execute(query);
+        if(status){
+            ResultSet rs = statement.executeQuery(select);
+            while(rs.next()) {
+                System.out.println(rs.getString("sname"));
+            }
+        } else {
+            System.out.println(statement.getUpdateCount() + " rows affected!");
         }
 
         // Step6. Process the Result.
 
-
         // Step7. Free the Resources & Terminate the Connection.
+        // result.close();
         statement.close();
         connect.close();
     }

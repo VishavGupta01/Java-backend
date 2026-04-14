@@ -16,11 +16,11 @@ public class evenBetterJDBC {
 
             // User Input
             System.out.println("Enter id: ");
-            Integer id = scan.nextInt();
+            int id = scan.nextInt();
             System.out.println("Enter name: ");
             String name = scan.next();
             System.out.println("Enter age: ");
-            Integer age = scan.nextInt();
+            int age = scan.nextInt();
             System.out.println("Enter city: ");
             String city = scan.next();
 
